@@ -18,6 +18,10 @@ const Item = sequelize.define('Item', {
   quantity: {
     type: DataTypes.INTEGER,
     allowNull: false,
+    validate: {
+      isInt: true,
+      min: 0,
+    }
   },
   userId: {
     type: DataTypes.INTEGER,
