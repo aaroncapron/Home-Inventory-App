@@ -11,12 +11,18 @@ Item.init({
   },
   name: {
     type: DataTypes.STRING,
+    allowNull: false,
   },
   category: {
     type: DataTypes.STRING,
+    allowNull: false,
   },
   quantity: {
     type: DataTypes.INTEGER,
+    allowNull: false,
+    validate: {
+      min: 0,
+    }
   },
   userId: {
     type: DataTypes.INTEGER,
