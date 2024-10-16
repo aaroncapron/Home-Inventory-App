@@ -1,9 +1,7 @@
-const { Model, DataTypes } = require('sequelize');
+const { DataTypes } = require('sequelize');
 const sequelize = require('../utils/database');
 
-class Item extends Model {}
-
-Item.init({
+const Item = sequelize.define('Item', {
   id: {
     type: DataTypes.INTEGER,
     primaryKey: true,
@@ -20,20 +18,24 @@ Item.init({
   quantity: {
     type: DataTypes.INTEGER,
     allowNull: false,
-    validate: {
-      min: 0,
-    }
   },
   userId: {
     type: DataTypes.INTEGER,
     references: {
-      model: 'User',
+      model: 'Users',
       key: 'id',
     },
   },
-}, {
-  sequelize,
-  modelName: 'Item',
+  createdAt: {
+    type: DataTypes.DATE,
+    allowNull: false,
+    defaultValue: DataTypes.NOW,
+  },
+  updatedAt: {
+    type: DataTypes.DATE,
+    allowNull: false,
+    defaultValue: DataTypes.NOW,
+  },
 });
 
 module.exports = Item;
